@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "zepto": "^1.2.0"
   }
 }

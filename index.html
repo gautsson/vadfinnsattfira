@@ -4,36 +4,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+
   <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-  <script src="node_modules/zepto/dist/zepto.min.js"></script>
+  <link href="node_modules/animate.css/animate.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arvo:400,400i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Vollkorn:400i" rel="stylesheet">
+
+  <link href="index.css" rel="stylesheet">
+
+
+  <!--<script src="node_modules/zepto/dist/zepto.min.js"></script>-->
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/moment/min/moment.min.js"></script>
+  <script src="node_modules/letteringjs/jquery.lettering.js"></script>
+  <script src="node_modules/textillate/jquery.textillate.js"></script>
   <script src="index.js"></script>
   <!--<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
 </head>
 
 <body>
+  <div class="text-center">
+    <h3 class="tlt" data-in-effect="fadeInUp" data-in-shuffle="true">So, you want to find an occasion to celebrate?</h3>
+    <p id="tlt2" class="tlt2" data-in-effect="fadeIn" data-in-shuffle="true" style="visibility: hidden;   display: inline;">Please select your birthday</p>    
+    <p class="animated-dot last-visible">..</p>
 
-  <div class="col-md-4 col-md-offset-4">
-    <h3>So you want to find an occasion to celebrate?</h3>
-    <p>Please select your birthday</p>
   </div>
-  <div class="row" style="margin: 100px ">
+  <div class="row last-visible" style="margin: 100px; visibility: hidden">
 
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
       <select class="form-control accent-font js-select-month">
-              <option value="0">January</option>
-              <option value="1">February</option>
-              <option value="2">March</option>
-              <option value="3">April</option>
-              <option value="4">May</option>
-              <option value="5" >June</option>
-              <option value="6">July</option>
-              <option value="7">August</option>
-              <option value="8">September</option>
-              <option value="9">October</option>
-              <option value="10">November</option>
-              <option value="11">December</option>
-            </select>
+        <option value="0">January</option>
+        <option value="1">February</option>
+        <option value="2">March</option>
+        <option value="3">April</option>
+        <option value="4">May</option>
+        <option value="5" >June</option>
+        <option value="6">July</option>
+        <option value="7">August</option>
+        <option value="8">September</option>
+        <option value="9">October</option>
+        <option value="10">November</option>
+        <option value="11">December</option>
+      </select>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
       <select class="form-control accent-font js-select-day">
@@ -191,9 +203,17 @@
     </div>
   </div>
 
+  <div class="text-center last-visible" style="visibility: hidden">
+    <button onClick="getResult()">Proceed!</button>
+  </div>
   <div class="col-md-12">
     <p id="answer"></p>
   </div>
+  <!--<div class="text-center">
+    <p>Happy with this?</p>
+    <button>Happy!</button>
+    <button>Not happy!</button>
+  </div>-->
 
 </body>
 

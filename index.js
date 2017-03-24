@@ -3,7 +3,7 @@ var birthday;
 const today = moment()
 
 // Helper functions for finding occasions to celebrate
-
+// ------------------------------------------------------
 function isBirthday(birthday, today) {
     return birthday.date() === today.date() && birthday.month() === today.month();
 }
@@ -77,6 +77,7 @@ function isFancySeconds(birthday, today) {
     }
     return null;
 }
+// ------------------------------------------------------
 
 function checkForOccasion() {
     if (isBirthday(birthday, today)) {
@@ -103,54 +104,20 @@ function checkForOccasion() {
         return "you have nothing to celebrate :("
 }
 
+function getResult() {
+    const occasion = checkForOccasion()
+    $("#answer").text("You can celebrate the fact that today you have lived for " + occasion + "!")
+}
 
 ////////////
 
 // Updates the hash in the url bar
 function updateLocationHash() {
     var date = getSelectedDate();
-    var month;
-    switch (date.getMonth()) {
-        case 0:
-            month = "january";
-            break;
-        case 1:
-            month = "february";
-            break;
-        case 2:
-            month = "march";
-            break;
-        case 3:
-            month = "april";
-            break;
-        case 4:
-            month = "may";
-            break;
-        case 5:
-            month = "june";
-            break;
-        case 6:
-            month = "july";
-            break;
-        case 7:
-            month = "august";
-            break;
-        case 8:
-            month = "september";
-            break;
-        case 9:
-            month = "october";
-            break;
-        case 10:
-            month = "november";
-            break;
-        case 11:
-            month = "december";
-            break;
-    }
     var day = date.getDate();
+    var month = date.getMonth() + 1;
     var year = date.getFullYear();
-    var hash = month + "-" + day + "-" + year;
+    var hash = year + "-" + month + "-" + day
     window.location.hash = hash;
 }
 
@@ -232,6 +199,8 @@ function setBirthdayFromHash() {
 }
 
 
+
+
 function handleEvents() {
     // Enable back/forward navigation by listening to hash changes on the window.
     $(window).on("hashchange", setBirthdayFromHash)
@@ -242,13 +211,36 @@ function handleEvents() {
         updateLocationHash()
         var date = getSelectedDate();
         birthday = moment(date);
-        const occasion = checkForOccasion()
-        $("#answer").text("You can celebrate the fact that today you have lived for " + occasion)
+        $("#answer").text("")
+        // const occasion = checkForOccasion()
+        // $("#answer").text()
     })
 }
+
+
+
+function nextMove() {
+    document.getElementById("tlt2").style.visibility = "visible";
+    $("tlt2").textillate({ in: {
+            callback: function () {
+                const elements = document.getElementsByClassName("last-visible")
+                for (var i = 0; i < elements.length; i++)
+                    elements[i].style.visibility = "visible"
+            }()
+        }
+    });
+}
+
 
 // Startup function
 $(function () {
     setBirthdayFromHash()
     handleEvents()
+    $('.tlt').textillate({ in: {
+            // effect: 'fadeInRightBig',
+            // sync: true,
+            // delayScale: 1,
+            callback: nextMove
+        },
+    });
 })

@@ -1,7 +1,3 @@
-// Globals
-var birthday;
-const today = moment()
-
 // Helper functions for finding occasions to celebrate
 // ------------------------------------------------------
 function isBirthday(birthday, today) {
@@ -77,9 +73,14 @@ function isFancySeconds(birthday, today) {
     }
     return null;
 }
+
+// Finding an occasion to celebrate
 // ------------------------------------------------------
 
-function checkForOccasion() {
+function findOccasion() {
+    var birthday = moment(getSelectedDate());
+    var today = moment();
+
     if (isBirthday(birthday, today)) {
         return "It's your birthday!"
     }
@@ -91,37 +92,38 @@ function checkForOccasion() {
     seconds = isFancySeconds(birthday, today);
 
     if (months)
-        return (months + " months")
+        return (months + " månader")
     else if (days)
-        return days + " days"
+        return days + " dagar"
     else if (hours)
-        return hours + " hours"
+        return hours + " timmar"
     else if (minutes)
-        return minutes + " minutes"
+        return minutes + " minuter"
     else if (seconds)
-        return seconds + " seconds"
+        return seconds + " sekunder"
     else
-        return "you have nothing to celebrate :("
+        return "en lång tid.."
 }
 
-function getResult() {
-    const occasion = checkForOccasion()
+function getOccasion() {
     swal({
-        title: "<h1>Congratulations!</h1>",
-        text: "<h2>You can celebrate the fact that today you have lived for: </h2><h1 style='margin-top: 20px'>" + occasion + "!</h1>",
+        title: "<h1 style='color: red'>Grattis! 🎈 🎁</h1>",
+        text: "<h3>Du kan fira att i dag har du levat i </h3><h1 style='margin-top: 20px'>" + findOccasion() + "!</h1>",
         confirmButtonText: "Yay!",
         html: true
     });
-    // $("#answer").text("You can celebrate the fact that today you have lived for " + occasion + "!")
 }
 
-////////////
+
+// DOM Manipulation functions & more
+// ------------------------------------------------------
+
 
 // Updates the hash in the url bar
 function updateLocationHash() {
     var date = getSelectedDate();
     var day = date.getDate();
-    var month = date.getMonth() + 1;
+    var month = date.getMonth() + 1; // JS is stupid and starts months at 0
     var year = date.getFullYear();
     var hash = year + "-" + month + "-" + day
     window.location.hash = hash;
@@ -156,7 +158,6 @@ function setInitialDate() {
     $(".js-select-day").val(initialDate.getDate())
     $(".js-select-month").val(initialDate.getMonth())
     $(".js-select-year").val(initialDate.getFullYear())
-    birthday = moment(initialDate);
 }
 
 // Disable unavailable days when user selects a new month or year
@@ -193,60 +194,41 @@ function updateAvailableDays() {
 }
 
 
-
-
-function setBirthdayFromHash() {
-    setInitialDate()
-    updateAvailableDays()
-    // var date = getSelectedDate();
-    // birthday = moment(date);
-    // const occasion = checkForOccasion()
-    // $("#answer").text(occasion)
-}
-
-
-
-
 function handleEvents() {
-    // Enable back/forward navigation by listening to hash changes on the window.
-    $(window).on("hashchange", setBirthdayFromHash)
-
-    // On any change in the select elements
+    // On any change in the select elements, trigger update location hash
     $("select").on("change", function () {
-        updateAvailableDays()
         updateLocationHash()
-        var date = getSelectedDate();
-        birthday = moment(date);
-        $("#answer").text("")
-        // const occasion = checkForOccasion()
-        // $("#answer").text()
+    })
+    $(window).on("hashchange", function () {
+        setInitialDate()
+        updateAvailableDays()
     })
 }
 
 
 
-function nextMove() {
+// Startup functions
+
+$(function () {
+    setInitialDate()
+    updateAvailableDays()
+    handleEvents()
+    $('.tlt').textillate({ in: {
+            callback: secondAnimation
+        }
+    });
+})
+
+function secondAnimation() {
     document.getElementById("tlt2").style.visibility = "visible";
     $('.tlt2').textillate({ in: {
-            callback: function () {
-                const elements = document.getElementsByClassName("last-visible")
-                for (var i = 0; i < elements.length; i++)
-                    elements[i].style.visibility = "visible"
-            }
-        },
+            callback: thirdAnimation
+        }
     });
 }
 
-
-// Startup function
-$(function () {
-    setBirthdayFromHash()
-    handleEvents()
-    $('.tlt').textillate({ in: {
-            // effect: 'fadeInRightBig',
-            // sync: true,
-            // delayScale: 1,
-            callback: nextMove
-        },
-    });
-})
+function thirdAnimation() {
+    const elements = document.getElementsByClassName("last-visible")
+    for (var i = 0; i < elements.length; i++)
+        elements[i].style.visibility = "visible"
+}

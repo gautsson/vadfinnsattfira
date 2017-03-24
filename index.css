@@ -1,5 +1,5 @@
 html {
-    background: url(./bg.jpg) no-repeat center center fixed;
+    background: url(./bg2.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -17,37 +17,45 @@ select {
     height: 60px !important;
 }
 
+option:disabled {
+    background: darkred;
+}
+
 #intro {
-    margin-top: 20%;
+    margin-top: 12%;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
+    from {
+        opacity: 0;
+    }
 }
+
 .animated-dot {
-  animation: fadeIn 0.5s infinite alternate;
-  display: inline;
-  visibility: hidden;
+    animation: fadeIn 0.5s infinite alternate;
+    display: inline;
+    visibility: hidden;
 }
 
 .ghost-button-transition {
-  display: inline-block;
-  width: 300px;
-  padding: 8px;
-  color: #fff;
-  border: 2px solid #fff;
-  text-align: center;
-  outline: none;
-  text-decoration: none;
-  transition: background-color 0.2s ease-out,
-              color 0.2s ease-out;
+    display: inline-block;
+    width: 400px;
+    padding: 8px;
+    color: #fff;
+    border: 2px solid #fff;
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
 }
+
 .ghost-button-transition:hover,
 .ghost-button-transition:active {
-  background-color: #fff;
-  color: #000;
-  transition: background-color 0.3s ease-in,
-              color 0.3s ease-in;
+    background-color: #fff;
+    color: #000;
+    transition: background-color 0.3s ease-in, color 0.3s ease-in;
+}
+
+a {
+    font-size: 30px;
 }

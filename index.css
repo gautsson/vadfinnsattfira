@@ -17,6 +17,10 @@ select {
     height: 60px !important;
 }
 
+#intro {
+    margin-top: 20%;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -26,4 +30,24 @@ select {
   animation: fadeIn 0.5s infinite alternate;
   display: inline;
   visibility: hidden;
+}
+
+.ghost-button-transition {
+  display: inline-block;
+  width: 300px;
+  padding: 8px;
+  color: #fff;
+  border: 2px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease-out,
+              color 0.2s ease-out;
+}
+.ghost-button-transition:hover,
+.ghost-button-transition:active {
+  background-color: #fff;
+  color: #000;
+  transition: background-color 0.3s ease-in,
+              color 0.3s ease-in;
 }

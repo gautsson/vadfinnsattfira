@@ -106,7 +106,13 @@ function checkForOccasion() {
 
 function getResult() {
     const occasion = checkForOccasion()
-    $("#answer").text("You can celebrate the fact that today you have lived for " + occasion + "!")
+    swal({
+        title: "<h1>Congratulations!</h1>",
+        text: "<h2>You can celebrate the fact that today you have lived for: </h2><h1 style='margin-top: 20px'>" + occasion + "!</h1>",
+        confirmButtonText: "Yay!",
+        html: true
+    });
+    // $("#answer").text("You can celebrate the fact that today you have lived for " + occasion + "!")
 }
 
 ////////////
@@ -221,13 +227,13 @@ function handleEvents() {
 
 function nextMove() {
     document.getElementById("tlt2").style.visibility = "visible";
-    $("tlt2").textillate({ in: {
+    $('.tlt2').textillate({ in: {
             callback: function () {
                 const elements = document.getElementsByClassName("last-visible")
                 for (var i = 0; i < elements.length; i++)
                     elements[i].style.visibility = "visible"
-            }()
-        }
+            }
+        },
     });
 }
 

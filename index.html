@@ -4,49 +4,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
-
+<title>Det finns alltid någon anledning för att fira</title>
   <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <link href="node_modules/animate.css/animate.min.css" rel="stylesheet">
+  <link href="node_modules/sweetalert/dist/sweetalert.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Arvo:400,400i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Vollkorn:400i" rel="stylesheet">
 
   <link href="index.css" rel="stylesheet">
 
-
-  <!--<script src="node_modules/zepto/dist/zepto.min.js"></script>-->
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/moment/min/moment.min.js"></script>
   <script src="node_modules/letteringjs/jquery.lettering.js"></script>
   <script src="node_modules/textillate/jquery.textillate.js"></script>
+  <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
   <script src="index.js"></script>
-  <!--<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-  <div class="text-center">
-    <h3 class="tlt" data-in-effect="fadeInUp" data-in-shuffle="true">So, you want to find an occasion to celebrate?</h3>
-    <p id="tlt2" class="tlt2" data-in-effect="fadeIn" data-in-shuffle="true" style="visibility: hidden;   display: inline;">Please select your birthday</p>    
+  <div id="intro" class="text-center">
+    <h2 class="tlt" id="tlt" data-in-effect="tada">So, you want to find an occasion to celebrate?</h2>
+    <p class="tlt2" id="tlt2" data-in-effect="fadeInUp" style="display: inline; visibility: hidden">Please select your birthday</p>
     <p class="animated-dot last-visible">..</p>
-
   </div>
-  <div class="row last-visible" style="margin: 100px; visibility: hidden">
 
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
-      <select class="form-control accent-font js-select-month">
-        <option value="0">January</option>
-        <option value="1">February</option>
-        <option value="2">March</option>
-        <option value="3">April</option>
-        <option value="4">May</option>
-        <option value="5" >June</option>
-        <option value="6">July</option>
-        <option value="7">August</option>
-        <option value="8">September</option>
-        <option value="9">October</option>
-        <option value="10">November</option>
-        <option value="11">December</option>
-      </select>
-    </div>
+  <div class="row last-visible" style="margin: 5%; visibility: hidden">
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
       <select class="form-control accent-font js-select-day">
             <option class="js-day" value="1">1st</option>
@@ -82,6 +65,24 @@
             <option class="js-day js-day-31" value="31">31st</option>
           </select>
     </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+      <select class="form-control accent-font js-select-month">
+        <option value="0">January</option>
+        <option value="1">February</option>
+        <option value="2">March</option>
+        <option value="3">April</option>
+        <option value="4">May</option>
+        <option value="5" >June</option>
+        <option value="6">July</option>
+        <option value="7">August</option>
+        <option value="8">September</option>
+        <option value="9">October</option>
+        <option value="10">November</option>
+        <option value="11">December</option>
+      </select>
+    </div>
+
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
       <select class="form-control accent-font js-select-year">
             <option value="1900">1900</option>
@@ -204,11 +205,13 @@
   </div>
 
   <div class="text-center last-visible" style="visibility: hidden">
-    <button onClick="getResult()">Proceed!</button>
+      <a onClick="getResult()" class="ghost-button-transition" style="margin-top: 5%; cursor: pointer">Proceed</a>
   </div>
-  <div class="col-md-12">
+
+  <div class="col-md-12 text-center">
     <p id="answer"></p>
   </div>
+
   <!--<div class="text-center">
     <p>Happy with this?</p>
     <button>Happy!</button>

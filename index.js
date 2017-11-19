@@ -82,7 +82,7 @@ function findOccasion() {
     var today = moment();
 
     if (isBirthday(birthday, today)) {
-        return "It's your birthday!"
+        return "fyller du år!"
     }
 
     months = isFancyMonths(birthday, today);
@@ -92,26 +92,58 @@ function findOccasion() {
     seconds = isFancySeconds(birthday, today);
 
     if (months)
-        return (months + " månader")
+        return "har du levat i " + months + " månader"
     else if (days)
-        return days + " dagar"
+        return "har du levat i " + days + " dagar"
     else if (hours)
-        return hours + " timmar"
+        return "har du levat i " + hours + " timmar"
     else if (minutes)
-        return minutes + " minuter"
+        return "har du levat i " + minutes + " minuter"
     else if (seconds)
         return seconds + " sekunder"
     else
-        return "en lång tid.."
+        return "har du levat ganska länge.."
 }
+
+// 🎈 🎁
 
 function getOccasion() {
     swal({
-        title: "<h1 style='color: red'>Grattis! 🎈 🎁</h1>",
-        text: "<h3>Du kan fira att i dag har du levat i </h3><h1 style='margin-top: 20px'>" + findOccasion() + "!</h1>",
-        confirmButtonText: "Yay!",
+        // title: "<h1 style='color: red'>Grattis!</h1>",
+        title: "<h1>Grattis!</h1>",
+        text: "<h3>Du kan fira att idag</h3><h1 style='margin-top: 20px'>" + findOccasion() + "!</h1>",
+        showCancelButton: true,
+        closeOnConfirm: false,
+        closeOnCancel: false,
+        cancelButtonText: "Jag är inte nöjd",
+        confirmButtonText: "Vad kul!",
         html: true
-    });
+    },
+        function (isConfirm) {
+            if (isConfirm) {
+                swal({
+                    title: "<h1>Fantastiskt!</h1>",
+                    text: "<h3>Du får då ha det så kul!</h1>",
+                    closeOnConfirm: false,
+                    confirmButtonText: "Okej",
+                    html: true
+                },
+                    function () {
+                        window.location.href = "./pyro.html";
+                    });
+            } else {
+                swal({
+                    title: "<h1>Vad tråkigt!</h1>",
+                    text: "<h3>Kanske kan du hitta någon annan anledning på en annan sida..</h1>",
+                    closeOnConfirm: false,
+                    confirmButtonText: "Okej",
+                    html: true
+                },
+                    function () {
+                        window.location.href = "http://vadskavifira.nu/";
+                    });
+            }
+        });
 }
 
 
@@ -213,7 +245,8 @@ $(function () {
     setInitialDate()
     updateAvailableDays()
     handleEvents()
-    $('.tlt').textillate({ in: {
+    $('.tlt').textillate({
+        in: {
             callback: secondAnimation
         }
     });
@@ -221,7 +254,8 @@ $(function () {
 
 function secondAnimation() {
     document.getElementById("tlt2").style.visibility = "visible";
-    $('.tlt2').textillate({ in: {
+    $('.tlt2').textillate({
+        in: {
             callback: thirdAnimation
         }
     });
